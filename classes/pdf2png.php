@@ -28,7 +28,6 @@ class Pdf2png {
       $image->setImageCompressionQuality(100);
       $image->stripImage();
       $image->writeImage($pngFile);
-      return true;
     } catch (Exception $e) {
       if (function_exists(drupal_set_message)) {
         drupal_set_message($e->getMessage(), 'error');
