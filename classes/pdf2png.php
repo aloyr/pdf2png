@@ -4,6 +4,9 @@ class Pdf2pngException extends Exception {}
 class Pdf2png {
   function __construct($pdfFile = Null, $pngFile = Null) {
     try {
+      if (strtolower(substr($pdfFile,-3)) != 'pdf') {
+        throw new Pdf2pngException("Source document $pdfFile is not a pdf.");
+      }
       if ($pdfFile === Null) {
         throw new Pdf2pngException('Missing source pdf document.');
       }
@@ -11,7 +14,7 @@ class Pdf2png {
         throw new Pdf2pngException('Missing destination png image.');
       }
       if (!file_exists($pdfFile)) {
-        throw new Pdf2pngException('Source document does not exist.');
+        throw new Pdf2pngException("Source document $pdfFile does not exist.\n");
       }
       $format = 'png';
       $extension = '.' . $format;
