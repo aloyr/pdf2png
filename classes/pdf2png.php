@@ -1,9 +1,16 @@
 <?php
+namespace HID;
+use Imagick, Exception;
+
+
 class Pdf2pngException extends Exception {}
 
 class Pdf2png {
   function __construct($pdfFile = Null, $pngFile = Null) {
     try {
+      if (!class_exists('Imagick')) {
+        throw new Pdf2pngException("Missing Imagick library.");
+      }
       if (strtolower(substr($pdfFile,-3)) != 'pdf') {
         throw new Pdf2pngException("Source document $pdfFile is not a pdf.");
       }
