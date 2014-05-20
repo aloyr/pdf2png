@@ -10,8 +10,7 @@ try {
 	 	if (is_file($pdfFile) && (strtolower(substr($pdfFile,-3)) == 'pdf')) {
 		  $image = 'output/' . substr($file,0,-3) . 'png';
 		  print $image . "\n";
-		  $objP2P = new Pdf2png($pdfFile, $image);
-		  print_r($objP2P);
+		  $objP2P = new \HID\Pdf2png($pdfFile, $image);
 		}
 	}
 } catch (Exception $e) {
